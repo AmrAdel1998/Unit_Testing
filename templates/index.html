@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 Pytest Tool - C Test Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-bottom: 2px solid #ddd;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 15px 20px;
+            background: #f5f5f5;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab:hover {
+            background: #e0e0e0;
+        }
+        
+        .tab.active {
+            background: white;
+            border-bottom: 3px solid #667eea;
+            color: #667eea;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 30px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .upload-area {
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            background: #f9f9f9;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 5px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-danger {
+            background: #dc3545;
+        }
+        
+        .btn-success {
+            background: #28a745;
+        }
+        
+        input[type="text"], input[type="file"] {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            width: 100%;
+            margin: 10px 0;
+        }
+        
+        .document-list, .test-list {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+            margin: 15px 0;
+        }
+        
+        .document-item, .test-item {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .function-item {
+            background: #f9f9f9;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .function-item h3 {
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        
+        .code-view {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            max-height: 400px;
+            overflow-y: auto;
+            margin: 15px 0;
+        }
+        
+        .status {
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-weight: 600;
+        }
+        
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .checkbox-list {
+            max-height: 300px;
+            overflow-y: auto;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .checkbox-item {
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border-radius: 5px;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧪 Pytest Tool</h1>
+            <p>Automated C Test Generator</p>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showTab(0)">📄 Documents</button>
+            <button class="tab" onclick="showTab(1)">🔍 Parse C Project</button>
+            <button class="tab" onclick="showTab(2)">📝 Generated Tests</button>
+            <button class="tab" onclick="showTab(3)">▶️ Run & Reports</button>
+        </div>
+        
+        <!-- Documents Tab -->
+        <div id="tab-0" class="tab-content active">
+            <div class="section">
+                <h2>Upload Document</h2>
+                <div class="upload-area">
+                    <input type="file" id="fileInput" accept=".pdf,.docx,.txt,.md">
+                    <br><br>
+                    <button class="btn" onclick="uploadDocument()">Upload Document</button>
+                </div>
+                <div id="uploadStatus"></div>
+            </div>
+            
+            <div class="section">
+                <h2>Uploaded Documents</h2>
+                <button class="btn btn-secondary" onclick="loadDocuments()">Refresh</button>
+                <div id="documentList" class="document-list"></div>
+            </div>
+        </div>
+        
+        <!-- Parse C Project Tab -->
+        <div id="tab-1" class="tab-content">
+            <div class="section">
+                <h2>Parse C Project</h2>
+                <input type="text" id="projectPath" placeholder="Project path (e.g., examples)" value="examples">
+                <button class="btn" onclick="parseProject()">Parse Project</button>
+                <div id="parseStatus"></div>
+            </div>
+            
+            <div class="section">
+                <h2>Parsed Functions</h2>
+                <div id="functionList"></div>
+            </div>
+        </div>
+        
+        <!-- Generated Tests Tab -->
+        <div id="tab-2" class="tab-content">
+            <div class="section">
+                <h2>Generate Tests</h2>
+                <button class="btn btn-success" onclick="generateTests()">Generate Tests</button>
+                <div id="generateStatus"></div>
+            </div>
+            
+            <div class="section">
+                <h2>Generated Test Files</h2>
+                <button class="btn btn-secondary" onclick="loadTests()">Refresh</button>
+                <div id="testList" class="test-list"></div>
+            </div>
+            
+            <div class="section">
+                <h2>Test File Content</h2>
+                <div id="testContent" class="code-view"></div>
+            </div>
+        </div>
+        
+        <!-- Run & Reports Tab -->
+        <div id="tab-3" class="tab-content">
+            <div class="section">
+                <h2>Select Tests to Run</h2>
+                <button class="btn btn-secondary" onclick="loadTestSelection()">Refresh</button>
+                <div id="testSelection" class="checkbox-list"></div>
+            </div>
+            
+            <div class="section">
+                <button class="btn btn-success" onclick="runTests()">Run Selected Tests</button>
+                <div id="runStatus"></div>
+            </div>
+            
+            <div class="section">
+                <h2>Reports</h2>
+                <button class="btn" onclick="openHtmlReport()">Open HTML Report</button>
+                <button class="btn" onclick="openXmlReport()">Open XML Report</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Tab switching
+        function showTab(index) {
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach((tab, i) => {
+                if (i === index) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+            
+            contents.forEach((content, i) => {
+                if (i === index) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+        }
+        
+        // API calls
+        async function apiCall(url, method = 'GET', data = null) {
+            const options = {
+                method,
+                headers: {'Content-Type': 'application/json'}
+            };
+            if (data) options.body = JSON.stringify(data);
+            
+            const response = await fetch(url, options);
+            return response.json();
+        }
+        
+        // Documents
+        async function uploadDocument() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            if (!file) {
+                alert('Please select a file');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            const statusDiv = document.getElementById('uploadStatus');
+            statusDiv.innerHTML = '<div class="status info">Uploading...</div>';
+            
+            try {
+                const response = await fetch('/api/documents', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                
+                if (response.ok) {
+                    statusDiv.innerHTML = '<div class="status success">Upload successful!</div>';
+                    loadDocuments();
+                    fileInput.value = '';
+                } else {
+                    statusDiv.innerHTML = `<div class="status error">Error: ${result.error}</div>`;
+                }
+            } catch (error) {
+                statusDiv.innerHTML = `<div class="status error">Error: ${error.message}</div>`;
+            }
+        }
+        
+        async function loadDocuments() {
+            const listDiv = document.getElementById('documentList');
+            listDiv.innerHTML = '<div class="loading"></div>';
+            
+            try {
+                const docs = await apiCall('/api/documents');
+                if (docs.length === 0) {
+                    listDiv.innerHTML = '<p>No documents uploaded yet.</p>';
+                    return;
+                }
+                
+                listDiv.innerHTML = docs.map(doc => `
+                    <div class="document-item">
+                        <span>📄 ${doc}</span>
+                        <div>
+                            <button class="btn btn-secondary" onclick="viewDocument('${doc}')">View</button>
+                            <button class="btn btn-danger" onclick="deleteDocument('${doc}')">Delete</button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                listDiv.innerHTML = `<div class="status error">Error loading documents: ${error.message}</div>`;
+            }
+        }
+        
+        async function viewDocument(filename) {
+            try {
+                const response = await fetch(`/api/documents/${filename}`);
+                const result = await response.json();
+                alert(result.content.substring(0, 1000) + '...');
+            } catch (error) {
+                alert('Error viewing document: ' + error.message);
+            }
+        }
+        
+        async function deleteDocument(filename) {
+            if (!confirm(`Delete ${filename}?`)) return;
+            
+            try {
+                await apiCall(`/api/documents/${filename}`, 'DELETE');
+                loadDocuments();
+            } catch (error) {
+                alert('Error deleting document: ' + error.message);
+            }
+        }
+        
+        // Parse Project
+        async function parseProject() {
+            const projectPath = document.getElementById('projectPath').value;
+            const statusDiv = document.getElementById('parseStatus');
+            statusDiv.innerHTML = '<div class="status info">Parsing...</div>';
+            
+            try {
+                const result = await apiCall('/api/parse', 'POST', {project_dir: projectPath});
+                statusDiv.innerHTML = `<div class="status success">Found ${result.count} functions!</div>`;
+                
+                const listDiv = document.getElementById('functionList');
+                listDiv.innerHTML = result.functions.map(fn => `
+                    <div class="function-item">
+                        <h3>${fn.name}</h3>
+                        <p><strong>Return:</strong> ${fn.return}</p>
+                        <p><strong>Args:</strong> ${fn.args}</p>
+                        <p><strong>File:</strong> ${fn.file}</p>
+                    </div>
+                `).join('');
+            } catch (error) {
+                statusDiv.innerHTML = `<div class="status error">Error: ${error.error || error.message}</div>`;
+            }
+        }
+        
+        // Generate Tests
+        async function generateTests() {
+            const statusDiv = document.getElementById('generateStatus');
+            statusDiv.innerHTML = '<div class="status info">Generating tests...</div>';
+            
+            try {
+                const result = await apiCall('/api/tests/generate', 'POST');
+                statusDiv.innerHTML = '<div class="status success">Tests generated successfully!</div>';
+                loadTests();
+            } catch (error) {
+                statusDiv.innerHTML = `<div class="status error">Error: ${error.error || error.message}</div>`;
+            }
+        }
+        
+        async function loadTests() {
+            const listDiv = document.getElementById('testList');
+            listDiv.innerHTML = '<div class="loading"></div>';
+            
+            try {
+                const tests = await apiCall('/api/tests');
+                if (tests.length === 0) {
+                    listDiv.innerHTML = '<p>No test files generated yet.</p>';
+                    return;
+                }
+                
+                listDiv.innerHTML = tests.map(test => `
+                    <div class="test-item">
+                        <span>📝 ${test.name}</span>
+                        <button class="btn btn-secondary" onclick="viewTest('${test.name}')">View</button>
+                    </div>
+                `).join('');
+            } catch (error) {
+                listDiv.innerHTML = `<div class="status error">Error: ${error.error || error.message}</div>`;
+            }
+        }
+        
+        async function viewTest(filename) {
+            try {
+                const tests = await apiCall('/api/tests');
+                const test = tests.find(t => t.name === filename);
+                if (test) {
+                    const contentDiv = document.getElementById('testContent');
+                    contentDiv.textContent = test.content;
+                }
+            } catch (error) {
+                alert('Error viewing test: ' + error.message);
+            }
+        }
+        
+        // Run Tests
+        async function loadTestSelection() {
+            const selectionDiv = document.getElementById('testSelection');
+            selectionDiv.innerHTML = '<div class="loading"></div>';
+            
+            try {
+                const tests = await apiCall('/api/tests');
+                if (tests.length === 0) {
+                    selectionDiv.innerHTML = '<p>No test files found. Generate tests first.</p>';
+                    return;
+                }
+                
+                selectionDiv.innerHTML = tests.map(test => `
+                    <div class="checkbox-item">
+                        <label>
+                            <input type="checkbox" value="${test.name}" checked>
+                            ${test.name}
+                        </label>
+                    </div>
+                `).join('');
+            } catch (error) {
+                selectionDiv.innerHTML = `<div class="status error">Error: ${error.error || error.message}</div>`;
+            }
+        }
+        
+        async function runTests() {
+            const checkboxes = document.querySelectorAll('#testSelection input[type="checkbox"]:checked');
+            const selected = Array.from(checkboxes).map(cb => cb.value);
+            
+            if (selected.length === 0) {
+                alert('Please select at least one test file');
+                return;
+            }
+            
+            const statusDiv = document.getElementById('runStatus');
+            statusDiv.innerHTML = '<div class="status info">Running tests...</div>';
+            
+            try {
+                const result = await apiCall('/api/tests/run', 'POST', {selected});
+                statusDiv.innerHTML = '<div class="status success">Tests completed! Check reports.</div>';
+            } catch (error) {
+                statusDiv.innerHTML = `<div class="status error">Error: ${error.error || error.message}</div>`;
+            }
+        }
+        
+        function openHtmlReport() {
+            window.open('/api/reports/html', '_blank');
+        }
+        
+        function openXmlReport() {
+            window.open('/api/reports/xml', '_blank');
+        }
+        
+        // Load initial data
+        window.onload = function() {
+            loadDocuments();
+            loadTestSelection();
+        };
+    </script>
+</body>
+</html>
+

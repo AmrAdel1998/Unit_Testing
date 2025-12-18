@@ -1,0 +1,9 @@
+# Minimal requirements for Tkinter GUI only
+pdfminer.six
+python-docx
+pycparser
+pytest
+pytest-html
+pytest-xdist
+junit-xml
+

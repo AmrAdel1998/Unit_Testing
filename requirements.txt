@@ -1,0 +1,12 @@
+streamlit
+flask
+werkzeug
+pycparser
+python-docx
+pdfminer.six
+pytest
+pytest-html
+pytest-xdist
+junit-xml
+lxml
+openai

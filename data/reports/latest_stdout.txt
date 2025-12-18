@@ -1,0 +1,11 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.0, pytest-9.0.1, pluggy-1.6.0
+rootdir: D:\UnitTesting - Copy\data\generated_tests
+plugins: csv-3.0.0, html-4.1.1, metadata-3.1.1, xdist-3.8.0
+collected 3 items
+
+test_examples_complex_project_calculator_c_add.py sss                    [100%]
+
+------ generated xml file: D:\UnitTesting - Copy\data\reports\junit.xml -------
+- Generated html report: file:///D:/UnitTesting%20-%20Copy/data/reports/report.html -
+============================= 3 skipped in 0.04s ==============================

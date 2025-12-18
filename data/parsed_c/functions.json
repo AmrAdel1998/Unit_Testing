@@ -1,0 +1,205 @@
+[
+  {
+    "file": "examples\\sample.c",
+    "name": "add",
+    "return": "int",
+    "raw_return": "int",
+    "args": "int a, int b"
+  },
+  {
+    "file": "examples\\sample.c",
+    "name": "multiply",
+    "return": "int",
+    "raw_return": "int",
+    "args": "int a, int b"
+  },
+  {
+    "file": "examples\\sample.c",
+    "name": "factorial",
+    "return": "int",
+    "raw_return": "int",
+    "args": "int n"
+  },
+  {
+    "file": "examples\\sample.c",
+    "name": "find_max",
+    "return": "int",
+    "raw_return": "int",
+    "args": "int arr[], int size"
+  },
+  {
+    "file": "examples\\sample.c",
+    "name": "reverse_string",
+    "return": "char*",
+    "raw_return": "char*",
+    "args": "char* str"
+  },
+  {
+    "file": "examples\\complex_project\\calculator.c",
+    "name": "add",
+    "return": "int",
+    "raw_return": "int",
+    "args": "int a, int b"
+  },
+  {
+    "file": "examples\\complex_project\\calculator.c",
+    "name": "subtract",
+    "return": "int",
+    "raw_return": "int",
+    "args": "int a, int b"
+  },
+  {
+    "file": "examples\\complex_project\\calculator.c",
+    "name": "multiply",
+    "return": "int",
+    "raw_return": "int",
+    "args": "int a, int b"
+  },
+  {
+    "file": "examples\\complex_project\\calculator.c",
+    "name": "divide",
+    "return": "int",
+    "raw_return": "int",
+    "args": "int a, int b"
+  },
+  {
+    "file": "examples\\complex_project\\calculator.c",
+    "name": "power",
+    "return": "int",
+    "raw_return": "int",
+    "args": "int base, int exponent"
+  },
+  {
+    "file": "examples\\complex_project\\calculator.c",
+    "name": "factorial",
+    "return": "int",
+    "raw_return": "int",
+    "args": "int n"
+  },
+  {
+    "file": "examples\\complex_project\\data_structures.c",
+    "name": "create_stack",
+    "return": "Stack*",
+    "raw_return": "Stack*",
+    "args": "int capacity"
+  },
+  {
+    "file": "examples\\complex_project\\data_structures.c",
+    "name": "push",
+    "return": "int",
+    "raw_return": "int",
+    "args": "Stack* stack, int item"
+  },
+  {
+    "file": "examples\\complex_project\\data_structures.c",
+    "name": "pop",
+    "return": "int",
+    "raw_return": "int",
+    "args": "Stack* stack"
+  },
+  {
+    "file": "examples\\complex_project\\data_structures.c",
+    "name": "peek",
+    "return": "int",
+    "raw_return": "int",
+    "args": "Stack* stack"
+  },
+  {
+    "file": "examples\\complex_project\\data_structures.c",
+    "name": "is_empty",
+    "return": "int",
+    "raw_return": "int",
+    "args": "Stack* stack"
+  },
+  {
+    "file": "examples\\complex_project\\data_structures.c",
+    "name": "is_full",
+    "return": "int",
+    "raw_return": "int",
+    "args": "Stack* stack"
+  },
+  {
+    "file": "examples\\complex_project\\data_structures.c",
+    "name": "destroy_stack",
+    "return": "void",
+    "raw_return": "void",
+    "args": "Stack* stack"
+  },
+  {
+    "file": "examples\\complex_project\\data_structures.c",
+    "name": "create_queue",
+    "return": "Queue*",
+    "raw_return": "Queue*",
+    "args": "void"
+  },
+  {
+    "file": "examples\\complex_project\\data_structures.c",
+    "name": "enqueue",
+    "return": "int",
+    "raw_return": "int",
+    "args": "Queue* queue, int data"
+  },
+  {
+    "file": "examples\\complex_project\\data_structures.c",
+    "name": "dequeue",
+    "return": "int",
+    "raw_return": "int",
+    "args": "Queue* queue"
+  },
+  {
+    "file": "examples\\complex_project\\data_structures.c",
+    "name": "destroy_queue",
+    "return": "void",
+    "raw_return": "void",
+    "args": "Queue* queue"
+  },
+  {
+    "file": "examples\\complex_project\\main.c",
+    "name": "main",
+    "return": "int",
+    "raw_return": "int",
+    "args": "int argc, char *argv[]"
+  },
+  {
+    "file": "examples\\complex_project\\string_utils.c",
+    "name": "reverse_string",
+    "return": "char*",
+    "raw_return": "char*",
+    "args": "char* str"
+  },
+  {
+    "file": "examples\\complex_project\\string_utils.c",
+    "name": "to_uppercase",
+    "return": "char*",
+    "raw_return": "char*",
+    "args": "char* str"
+  },
+  {
+    "file": "examples\\complex_project\\string_utils.c",
+    "name": "to_lowercase",
+    "return": "char*",
+    "raw_return": "char*",
+    "args": "char* str"
+  },
+  {
+    "file": "examples\\complex_project\\string_utils.c",
+    "name": "trim_string",
+    "return": "char*",
+    "raw_return": "char*",
+    "args": "char* str"
+  },
+  {
+    "file": "examples\\complex_project\\string_utils.c",
+    "name": "is_palindrome",
+    "return": "int",
+    "raw_return": "int",
+    "args": "const char* str"
+  },
+  {
+    "file": "examples\\complex_project\\string_utils.c",
+    "name": "count_char",
+    "return": "int",
+    "raw_return": "int",
+    "args": "const char* str, char ch"
+  }
+]

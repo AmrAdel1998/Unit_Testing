@@ -24,7 +24,86 @@ class AIDocumentAnalyzer:
         if not self.use_ai:
             print("Warning: No OpenAI API key found. Using fallback keyword extraction.")
             print("Set OPENAI_API_KEY environment variable or pass api_key to enable AI analysis.")
-    
+
+    def analyze_c_function(self, function_name: str, signature: str, source_code: str, related_docs: Optional[List[str]] = None) -> Dict:
+        """
+        Analyze a C function to infer behavior and produce unit test insights.
+        Returns structured hints usable by the test generator:
+        - purpose, inputs, outputs, side_effects
+        - edge_cases, negative_cases
+        - assertions: suggestions for validation
+        """
+        doc_context = "\n\n".join(related_docs or [])
+        if not self.use_ai:
+            # Fallback heuristics
+            hints = {
+                "purpose": f"Function {function_name} appears to implement logic based on its name.",
+                "inputs": signature,
+                "outputs": "Return value inferred from signature",
+                "side_effects": "Unknown (fallback)",
+                "edge_cases": [],
+                "negative_cases": [],
+                "assertions": []
+            }
+            # Simple patterns
+            lname = function_name.lower()
+            if lname.startswith('create_'):
+                hints["purpose"] = "Creates and initializes a data structure"
+                hints["assertions"].append("result is not None")
+            if lname.startswith('destroy_'):
+                hints["purpose"] = "Destroys/frees a data structure"
+                hints["side_effects"] = "Memory deallocation"
+                hints["assertions"].append("no crash on valid pointer")
+                hints["assertions"].append("no crash on NULL pointer")
+            if 'reverse' in lname or 'uppercase' in lname or 'lowercase' in lname:
+                hints["purpose"] = "Mutates string buffer in-place"
+                hints["assertions"].append("result is not None")
+            if 'count' in lname:
+                hints["purpose"] = "Counts occurrences"
+                hints["assertions"].append("result is integer")
+            return hints
+        
+        try:
+            import openai
+            openai.api_key = self.api_key
+            prompt = f"""You are a senior C developer and testing expert.
+Analyze this C function and produce unit test insights:
+- Purpose
+- Inputs and their constraints
+- Outputs and behavior
+- Side effects (if any)
+- Edge cases and negative cases
+- Concrete assertion suggestions in Python for ctypes calls
+
+Function name: {function_name}
+Signature: {signature}
+Source code:
+{source_code[:8000]}
+
+Related requirements (if any):
+{doc_context[:4000]}
+
+Respond with JSON fields:
+purpose, inputs, outputs, side_effects, edge_cases, negative_cases, assertions (array of short strings).
+"""
+            response = openai.ChatCompletion.create(
+                model=self.model,
+                messages=[
+                    {"role": "system", "content": "You produce concise, actionable testing insights. Respond with valid JSON only."},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=0.2,
+                max_tokens=1200
+            )
+            result_text = response.choices[0].message.content
+            if "```json" in result_text:
+                result_text = result_text.split("```json")[1].split("```")[0]
+            elif "```" in result_text:
+                result_text = result_text.split("```")[1].split("```")[0]
+            return json.loads(result_text)
+        except Exception as e:
+            print(f"AI function analysis failed: {e}. Using fallback.")
+            return self.analyze_c_function(function_name, signature, source_code, related_docs=related_docs or [])
     def analyze_document(self, document_text: str, document_name: str = "") -> Dict:
         """
         Analyze a document and extract requirements, test scenarios, and insights

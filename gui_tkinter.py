@@ -27,61 +27,28 @@ class PytestToolGUI:
         self.notebook.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
         
         # Create tabs
-        self.create_documents_tab()
         self.create_parse_tab()
         self.create_tests_tab()
         self.create_run_tab()
         
-    def create_documents_tab(self):
-        """Documents management tab"""
-        frame = ttk.Frame(self.notebook)
-        self.notebook.add(frame, text="📄 Documents")
+        # Status bar for API Key
+        self.status_bar = ttk.Frame(root)
+        self.status_bar.pack(side=tk.BOTTOM, fill=tk.X, padx=10, pady=2)
         
-        # Upload section
-        upload_frame = ttk.LabelFrame(frame, text="Upload Document", padding=10)
-        upload_frame.pack(fill=tk.X, padx=10, pady=10)
+        self.api_status_label = ttk.Label(self.status_bar, text="AI Status: Checking...")
+        self.api_status_label.pack(side=tk.RIGHT)
         
-        ttk.Button(upload_frame, text="Browse & Upload", command=self.upload_document).pack(side=tk.LEFT, padx=5)
-        self.upload_status = ttk.Label(upload_frame, text="No file selected")
-        self.upload_status.pack(side=tk.LEFT, padx=10)
+        self.update_api_status()
         
-        # Documents list
-        list_frame = ttk.LabelFrame(frame, text="Uploaded Documents", padding=10)
-        list_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
-        
-        # Listbox with scrollbar - enable multiple selection
-        scrollbar = ttk.Scrollbar(list_frame)
-        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
-        
-        self.doc_listbox = tk.Listbox(list_frame, yscrollcommand=scrollbar.set, selectmode=tk.EXTENDED)
-        self.doc_listbox.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
-        scrollbar.config(command=self.doc_listbox.yview)
-        
-        # Selection info label
-        self.selection_info = ttk.Label(list_frame, text="Tip: Hold Ctrl/Cmd to select multiple documents")
-        self.selection_info.pack(pady=5)
-        
-        # Buttons
-        btn_frame = ttk.Frame(list_frame)
-        btn_frame.pack(fill=tk.X, pady=5)
-        
-        ttk.Button(btn_frame, text="View", command=self.view_document).pack(side=tk.LEFT, padx=5)
-        ttk.Button(btn_frame, text="Analyze with AI", command=self.analyze_document_ai).pack(side=tk.LEFT, padx=5)
-        ttk.Button(btn_frame, text="Delete", command=self.delete_document).pack(side=tk.LEFT, padx=5)
-        ttk.Button(btn_frame, text="Refresh", command=self.refresh_documents).pack(side=tk.LEFT, padx=5)
-        
-        # AI Analysis result area
-        ai_frame = ttk.LabelFrame(frame, text="AI Analysis Results", padding=10)
-        ai_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
-        
-        self.ai_view = scrolledtext.ScrolledText(ai_frame, height=8, wrap=tk.WORD)
-        self.ai_view.pack(fill=tk.BOTH, expand=True)
-        
-        # View area
-        self.doc_view = scrolledtext.ScrolledText(frame, height=10, wrap=tk.WORD)
-        self.doc_view.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
-        
-        self.refresh_documents()
+        # Auto-parse on startup
+        self.root.after(100, self.parse_project)
+    
+    def update_api_status(self):
+        """Update the AI status indicator based on API key availability"""
+        if self.ai_analyzer.use_ai:
+            self.api_status_label.config(text="● AI Enabled (OpenAI)", foreground="green")
+        else:
+            self.api_status_label.config(text="○ AI Disabled (Fallback Mode)", foreground="red")
     
     def create_parse_tab(self):
         """C Project parsing tab"""
@@ -221,157 +188,11 @@ class PytestToolGUI:
         
         ttk.Button(report_frame, text="Open HTML Report", command=self.open_html_report).pack(side=tk.LEFT, padx=5)
         ttk.Button(report_frame, text="Open XML Report", command=self.open_xml_report).pack(side=tk.LEFT, padx=5)
+        ttk.Button(report_frame, text="Open Excel Report", command=self.open_excel_report).pack(side=tk.LEFT, padx=5)
         ttk.Button(report_frame, text="Open Reports Folder", command=self.open_reports_folder).pack(side=tk.LEFT, padx=5)
         ttk.Button(report_frame, text="View Error Log", command=self.view_error_log).pack(side=tk.LEFT, padx=5)
         
         self.refresh_test_selection()
-    
-    # Document tab methods
-    def upload_document(self):
-        file_path = filedialog.askopenfilename(
-            title="Select Document",
-            filetypes=[("All supported", "*.pdf *.docx *.txt *.md"), ("PDF", "*.pdf"), ("Word", "*.docx"), ("Text", "*.txt"), ("Markdown", "*.md")]
-        )
-        if file_path:
-            try:
-                # Create a mock uploaded file object
-                class MockUpload:
-                    def __init__(self, path):
-                        self.name = os.path.basename(path)
-                        self.path = path
-                    def getbuffer(self):
-                        with open(self.path, 'rb') as f:
-                            return f.read()
-                
-                mock_file = MockUpload(file_path)
-                dest = self.dm.save_uploaded_file(mock_file)
-                self.upload_status.config(text=f"Saved: {os.path.basename(dest)}")
-                self.refresh_documents()
-                messagebox.showinfo("Success", f"Document saved: {dest}")
-            except Exception as e:
-                messagebox.showerror("Error", f"Failed to upload: {str(e)}")
-    
-    def refresh_documents(self):
-        self.doc_listbox.delete(0, tk.END)
-        docs = self.dm.list_documents()
-        for doc in docs:
-            self.doc_listbox.insert(tk.END, doc)
-    
-    def view_document(self):
-        selection = self.doc_listbox.curselection()
-        if selection:
-            doc_name = self.doc_listbox.get(selection[0])
-            try:
-                content = self.dm.parse_document(doc_name)
-                self.doc_view.delete(1.0, tk.END)
-                self.doc_view.insert(1.0, content[:5000])  # Limit display
-            except Exception as e:
-                messagebox.showerror("Error", f"Failed to read document: {str(e)}")
-    
-    def analyze_document_ai(self):
-        selections = self.doc_listbox.curselection()
-        if not selections:
-            messagebox.showinfo("Info", "Please select one or more documents to analyze.\n\nTip: Hold Ctrl (Windows/Linux) or Cmd (Mac) to select multiple documents.")
-            return
-        
-        # Get all selected document names
-        selected_docs = [self.doc_listbox.get(idx) for idx in selections]
-        
-        if len(selected_docs) == 1:
-            status_msg = f"Analyzing {selected_docs[0]} with AI...\nPlease wait..."
-        else:
-            status_msg = f"Analyzing {len(selected_docs)} documents with AI...\nPlease wait...\n\nDocuments:\n" + "\n".join(f"  • {doc}" for doc in selected_docs)
-        
-        self.ai_view.delete(1.0, tk.END)
-        self.ai_view.insert(1.0, status_msg)
-        
-        def analyze():
-            try:
-                all_results = []
-                
-                for idx, doc_name in enumerate(selected_docs, 1):
-                    try:
-                        # Update status
-                        progress_msg = f"Processing document {idx}/{len(selected_docs)}: {doc_name}...\n"
-                        self.root.after(0, lambda msg=progress_msg: self.ai_view.insert(tk.END, msg))
-                        
-                        content = self.dm.parse_document(doc_name)
-                        analysis = self.ai_analyzer.analyze_document(content, doc_name)
-                        
-                        # Format analysis results for this document
-                        result_text = f"\n{'='*70}\n"
-                        result_text += f"📄 DOCUMENT {idx}: {doc_name}\n"
-                        result_text += "=" * 70 + "\n\n"
-                        
-                        if analysis.get('requirements'):
-                            result_text += "📋 REQUIREMENTS:\n"
-                            for req in analysis['requirements'][:10]:
-                                result_text += f"  • {req}\n"
-                            result_text += "\n"
-                        
-                        ''' if analysis.get('test_scenarios'):
-                            result_text += "🧪 TEST SCENARIOS:\n"
-                            for scenario in analysis['test_scenarios'][:10]:
-                                result_text += f"  • {scenario}\n"
-                            result_text += "\n"
-                        
-                        if analysis.get('edge_cases'):
-                            result_text += "⚠️ EDGE CASES:\n"
-                            for edge in analysis['edge_cases'][:10]:
-                                result_text += f"  • {edge}\n"
-                            result_text += "\n" '''
-                        
-                        if analysis.get('error_handling'):
-                            result_text += "❌ ERROR HANDLING:\n"
-                            for err in analysis['error_handling'][:10]:
-                                result_text += f"  • {err}\n"
-                            result_text += "\n"
-                        
-                        if analysis.get('analysis'):
-                            result_text += "📊 DETAILED ANALYSIS:\n"
-                            result_text += analysis['analysis'][:800] + "\n"
-                        
-                        all_results.append(result_text)
-                        
-                    except Exception as e:
-                        error_text = f"\n{'='*70}\n"
-                        error_text += f"❌ ERROR analyzing {doc_name}:\n{str(e)}\n"
-                        all_results.append(error_text)
-                
-                # Combine all results
-                final_result = f"AI Analysis Results - {len(selected_docs)} Document(s)\n"
-                final_result += "=" * 70 + "\n"
-                final_result += "".join(all_results)
-                
-                self.root.after(0, lambda: self.ai_view.delete(1.0, tk.END))
-                self.root.after(0, lambda: self.ai_view.insert(1.0, final_result))
-                
-                # Show completion message
-                if len(selected_docs) == 1:
-                    self.root.after(0, lambda: messagebox.showinfo("Analysis Complete", f"Analysis completed for {selected_docs[0]}"))
-                else:
-                    self.root.after(0, lambda: messagebox.showinfo("Analysis Complete", f"Analysis completed for {len(selected_docs)} documents"))
-                
-            except Exception as e:
-                error_msg = f"AI Analysis Error: {str(e)}\n\n"
-                error_msg += "Note: Make sure OPENAI_API_KEY is set or install openai library:\n"
-                error_msg += "pip install openai\n"
-                error_msg += "Then set your API key: export OPENAI_API_KEY='your-key-here'"
-                self.root.after(0, lambda: self.ai_view.delete(1.0, tk.END))
-                self.root.after(0, lambda: self.ai_view.insert(1.0, error_msg))
-                self.root.after(0, lambda: messagebox.showerror("AI Analysis Error", str(e)))
-        
-        threading.Thread(target=analyze, daemon=True).start()
-    
-    def delete_document(self):
-        selection = self.doc_listbox.curselection()
-        if selection:
-            doc_name = self.doc_listbox.get(selection[0])
-            if messagebox.askyesno("Confirm", f"Delete {doc_name}?"):
-                self.dm.delete_document(doc_name)
-                self.refresh_documents()
-                self.doc_view.delete(1.0, tk.END)
-                self.ai_view.delete(1.0, tk.END)
     
     # Parse tab methods
     def browse_project(self):
@@ -449,12 +270,13 @@ class PytestToolGUI:
     # Tests tab methods
     def generate_tests(self):
         self.gen_status.config(text="Generating...")
+        project_dir = self.project_path.get()
         
         def generate():
             try:
-                cpp = CProjectParser('examples')
+                cpp = CProjectParser(project_dir)
                 functions = cpp.parse_project()
-                docs_meta = self.dm.get_all_parsed()
+                docs_meta = self.dm.get_all_parsed() if hasattr(self, 'dm') else {}
                 
                 # Use AI analysis if available to enhance test generation
                 if self.ai_analyzer.use_ai:
@@ -668,6 +490,16 @@ class PytestToolGUI:
             webbrowser.open(f'file:///{os.path.abspath(report_path)}')
         else:
             messagebox.showinfo("Info", "No XML report found. Run tests first.")
+    
+    def open_excel_report(self):
+        report_path = os.path.join('data/reports', 'report.xlsx')
+        if os.path.exists(report_path):
+            try:
+                os.startfile(os.path.abspath(report_path))
+            except Exception as e:
+                 messagebox.showerror("Error", f"Failed to open Excel report: {str(e)}")
+        else:
+            messagebox.showinfo("Info", "No Excel report found. Run tests first.")
     
     def open_csv_report(self):
         report_path = os.path.join('data/reports', 'report.csv')

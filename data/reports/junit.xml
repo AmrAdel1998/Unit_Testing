@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="3" tests="3" time="0.043" timestamp="2025-12-18T14:46:43.469412+02:00" hostname="OH-TS-AADEL"><testcase classname="test_examples_complex_project_calculator_c_add" name="test_add_normal" time="0.002"><skipped type="pytest.skip" message="C library not loaded or function not found">D:\UnitTesting - Copy\data\generated_tests\test_examples_complex_project_calculator_c_add.py:59: C library not loaded or function not found</skipped><system-out>--------------------------------- Captured Out ---------------------------------
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="87" time="0.303" timestamp="2026-03-05T13:14:05.283226+02:00" hostname="OH-TS-AADEL"><testcase classname="test_examples_complex_project_calculator_c_add" name="test_add_normal" time="0.002"><system-out>--------------------------------- Captured Out ---------------------------------
 ======================================================================
 TEST SCENARIO: NORMAL for function add
 ======================================================================
@@ -18,8 +18,1799 @@ EXPECTED RESULT: 47
 STEP 2: EXECUTE FUNCTION
 ----------------------------------------------------------------------
   Step 2.1: Call function add(a, b)
+  Step 2.2: Capture return value
+    → result = 47
+  ✓ Function execution completed
 
-</system-out><system-out>--------------------------------- Captured Out ---------------------------------
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_calculator_c_add" name="test_add_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function add
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter a (int) will be set to 0
+  ✓ Parameter b (int) will be set to 0
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize a = 0
+  Step 1.2: Initialize b = 0
+  ✓ Test data prepared successfully
+
+EXPECTED RESULT: 0
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function add(a, b)
+  Step 2.2: Capture return value
+    → result = 0
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_calculator_c_add" name="test_add_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function add
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter a (int) will be set to -1
+  ✓ Parameter b (int) will be set to -1
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize a = -1
+  Step 1.2: Initialize b = -1
+  ✓ Test data prepared successfully
+
+EXPECTED RESULT: -2
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function add(a, b)
+  Step 2.2: Capture return value
+    → result = -2
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_calculator_c_divide" name="test_divide_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function divide
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter a (int) will be set to 5
+  ✓ Parameter b (int) will be set to 42
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize a = 5
+  Step 1.2: Initialize b = 42
+  ✓ Test data prepared successfully
+
+EXPECTED RESULT: 0
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function divide(a, b)
+  Step 2.2: Capture return value
+    → result = 0
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_calculator_c_divide" name="test_divide_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function divide
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter a (int) will be set to 0
+  ✓ Parameter b (int) will be set to 0
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize a = 0
+  Step 1.2: Initialize b = 0
+  ✓ Test data prepared successfully
+
+EXPECTED RESULT: 0
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function divide(a, b)
+  Step 2.2: Capture return value
+    → result = 0
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_calculator_c_divide" name="test_divide_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function divide
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter a (int) will be set to -1
+  ✓ Parameter b (int) will be set to -1
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize a = -1
+  Step 1.2: Initialize b = -1
+  ✓ Test data prepared successfully
+
+EXPECTED RESULT: 1
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function divide(a, b)
+  Step 2.2: Capture return value
+    → result = 1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_calculator_c_factorial" name="test_factorial_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function factorial
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter n (int) will be set to 5
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize n = 5
+  ✓ Test data prepared successfully
+
+EXPECTED RESULT: 120
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function factorial(n)
+  Step 2.2: Capture return value
+    → result = 120
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_calculator_c_factorial" name="test_factorial_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function factorial
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter n (int) will be set to 0
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize n = 0
+  ✓ Test data prepared successfully
+
+EXPECTED RESULT: 1
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function factorial(n)
+  Step 2.2: Capture return value
+    → result = 1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_calculator_c_factorial" name="test_factorial_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function factorial
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter n (int) will be set to -1
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize n = -1
+  ✓ Test data prepared successfully
+
+EXPECTED RESULT: -1
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function factorial(n)
+  Step 2.2: Capture return value
+    → result = -1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_calculator_c_multiply" name="test_multiply_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function multiply
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter a (int) will be set to 5
+  ✓ Parameter b (int) will be set to 42
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize a = 5
+  Step 1.2: Initialize b = 42
+  ✓ Test data prepared successfully
+
+EXPECTED RESULT: 210
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function multiply(a, b)
+  Step 2.2: Capture return value
+    → result = 210
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_calculator_c_multiply" name="test_multiply_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function multiply
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter a (int) will be set to 0
+  ✓ Parameter b (int) will be set to 0
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize a = 0
+  Step 1.2: Initialize b = 0
+  ✓ Test data prepared successfully
+
+EXPECTED RESULT: 0
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function multiply(a, b)
+  Step 2.2: Capture return value
+    → result = 0
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_calculator_c_multiply" name="test_multiply_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function multiply
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter a (int) will be set to -1
+  ✓ Parameter b (int) will be set to -1
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize a = -1
+  Step 1.2: Initialize b = -1
+  ✓ Test data prepared successfully
+
+EXPECTED RESULT: 1
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function multiply(a, b)
+  Step 2.2: Capture return value
+    → result = 1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_calculator_c_power" name="test_power_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function power
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter base (int) will be set to 2
+  ✓ Parameter exponent (int) will be set to 8
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize base = 2
+  Step 1.2: Initialize exponent = 8
+  ✓ Test data prepared successfully
+
+EXPECTED RESULT: 256
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function power(base, exponent)
+  Step 2.2: Capture return value
+    → result = 256
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_calculator_c_power" name="test_power_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function power
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter base (int) will be set to 10
+  ✓ Parameter exponent (int) will be set to 0
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize base = 10
+  Step 1.2: Initialize exponent = 0
+  ✓ Test data prepared successfully
+
+EXPECTED RESULT: 1
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function power(base, exponent)
+  Step 2.2: Capture return value
+    → result = 1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_calculator_c_power" name="test_power_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function power
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter base (int) will be set to 10
+  ✓ Parameter exponent (int) will be set to -2
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize base = 10
+  Step 1.2: Initialize exponent = -2
+  ✓ Test data prepared successfully
+
+EXPECTED RESULT: 0
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function power(base, exponent)
+  Step 2.2: Capture return value
+    → result = 0
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_calculator_c_subtract" name="test_subtract_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function subtract
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter a (int) will be set to 5
+  ✓ Parameter b (int) will be set to 42
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize a = 5
+  Step 1.2: Initialize b = 42
+  ✓ Test data prepared successfully
+
+EXPECTED RESULT: -37
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function subtract(a, b)
+  Step 2.2: Capture return value
+    → result = -37
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_calculator_c_subtract" name="test_subtract_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function subtract
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter a (int) will be set to 0
+  ✓ Parameter b (int) will be set to 0
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize a = 0
+  Step 1.2: Initialize b = 0
+  ✓ Test data prepared successfully
+
+EXPECTED RESULT: 0
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function subtract(a, b)
+  Step 2.2: Capture return value
+    → result = 0
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_calculator_c_subtract" name="test_subtract_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function subtract
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter a (int) will be set to -1
+  ✓ Parameter b (int) will be set to -1
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize a = -1
+  Step 1.2: Initialize b = -1
+  ✓ Test data prepared successfully
+
+EXPECTED RESULT: 0
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function subtract(a, b)
+  Step 2.2: Capture return value
+    → result = 0
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_create_queue" name="test_create_queue_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function create_queue
+======================================================================
+
+PRECONDITIONS:
+  ✓ No parameters required
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: No test data preparation needed
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function create_queue()
+  Step 2.2: Capture return value
+    → result = 2809173054576
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_create_queue" name="test_create_queue_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function create_queue
+======================================================================
+
+PRECONDITIONS:
+  ✓ No parameters required
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: No test data preparation needed
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function create_queue()
+  Step 2.2: Capture return value
+    → result = 2809173054608
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_create_queue" name="test_create_queue_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function create_queue
+======================================================================
+
+PRECONDITIONS:
+  ✓ No parameters required
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: No test data preparation needed
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function create_queue()
+  Step 2.2: Capture return value
+    → result = 2809173054640
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_create_stack" name="test_create_stack_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function create_stack
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter capacity (int) will be set to 10
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize capacity = 10
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function create_stack(capacity)
+  Step 2.2: Capture return value
+    → result = 2809173054672
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_create_stack" name="test_create_stack_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function create_stack
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter capacity (int) will be set to 1
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize capacity = 1
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function create_stack(capacity)
+  Step 2.2: Capture return value
+    → result = 2809173054752
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_create_stack" name="test_create_stack_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function create_stack
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter capacity (int) will be set to 0
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize capacity = 0
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function create_stack(capacity)
+  Step 2.2: Capture return value
+    → result = 2809173054816
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_dequeue" name="test_dequeue_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function dequeue
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter queue (Queue* *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize queue = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function dequeue(queue)
+  Step 2.2: Capture return value
+    → result = -1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_dequeue" name="test_dequeue_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function dequeue
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter queue (Queue* *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize queue = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function dequeue(queue)
+  Step 2.2: Capture return value
+    → result = -1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_dequeue" name="test_dequeue_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function dequeue
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter queue (Queue* *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize queue = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function dequeue(queue)
+  Step 2.2: Capture return value
+    → result = -1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_destroy_queue" name="test_destroy_queue_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function destroy_queue
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter queue (Queue* *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize queue = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function destroy_queue(queue)
+  Step 2.2: Lifecycle validated (void return)
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_destroy_queue" name="test_destroy_queue_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function destroy_queue
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter queue (Queue* *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize queue = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function destroy_queue(queue)
+  Step 2.2: Lifecycle validated (void return)
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_destroy_queue" name="test_destroy_queue_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function destroy_queue
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter queue (Queue* *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize queue = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function destroy_queue(queue)
+  Step 2.2: Lifecycle validated (void return)
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_destroy_stack" name="test_destroy_stack_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function destroy_stack
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter stack (Stack* *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize stack = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function destroy_stack(stack)
+  Step 2.2: Lifecycle validated (void return)
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_destroy_stack" name="test_destroy_stack_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function destroy_stack
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter stack (Stack* *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize stack = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function destroy_stack(stack)
+  Step 2.2: Lifecycle validated (void return)
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_destroy_stack" name="test_destroy_stack_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function destroy_stack
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter stack (Stack* *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize stack = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function destroy_stack(stack)
+  Step 2.2: Lifecycle validated (void return)
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_enqueue" name="test_enqueue_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function enqueue
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter queue (Queue* *) will be set to None
+  ✓ Parameter data (int) will be set to 10
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize queue = None
+  Step 1.2: Initialize data = 10
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function enqueue(queue, data)
+  Step 2.2: Capture return value
+    → result = -1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_enqueue" name="test_enqueue_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function enqueue
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter queue (Queue* *) will be set to None
+  ✓ Parameter data (int) will be set to -1
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize queue = None
+  Step 1.2: Initialize data = -1
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function enqueue(queue, data)
+  Step 2.2: Capture return value
+    → result = -1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_enqueue" name="test_enqueue_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function enqueue
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter queue (Queue* *) will be set to None
+  ✓ Parameter data (int) will be set to 999999
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize queue = None
+  Step 1.2: Initialize data = 999999
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function enqueue(queue, data)
+  Step 2.2: Capture return value
+    → result = -1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_is_empty" name="test_is_empty_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function is_empty
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter stack (Stack* *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize stack = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function is_empty(stack)
+  Step 2.2: Capture return value
+    → result = 1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_is_empty" name="test_is_empty_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function is_empty
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter stack (Stack* *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize stack = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function is_empty(stack)
+  Step 2.2: Capture return value
+    → result = 1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_is_empty" name="test_is_empty_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function is_empty
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter stack (Stack* *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize stack = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function is_empty(stack)
+  Step 2.2: Capture return value
+    → result = 1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_is_full" name="test_is_full_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function is_full
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter stack (Stack* *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize stack = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function is_full(stack)
+  Step 2.2: Capture return value
+    → result = 0
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_is_full" name="test_is_full_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function is_full
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter stack (Stack* *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize stack = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function is_full(stack)
+  Step 2.2: Capture return value
+    → result = 0
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_is_full" name="test_is_full_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function is_full
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter stack (Stack* *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize stack = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function is_full(stack)
+  Step 2.2: Capture return value
+    → result = 0
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_peek" name="test_peek_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function peek
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter stack (Stack* *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize stack = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function peek(stack)
+  Step 2.2: Capture return value
+    → result = -1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_peek" name="test_peek_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function peek
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter stack (Stack* *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize stack = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function peek(stack)
+  Step 2.2: Capture return value
+    → result = -1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_peek" name="test_peek_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function peek
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter stack (Stack* *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize stack = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function peek(stack)
+  Step 2.2: Capture return value
+    → result = -1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_pop" name="test_pop_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function pop
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter stack (Stack* *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize stack = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function pop(stack)
+  Step 2.2: Capture return value
+    → result = -1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_pop" name="test_pop_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function pop
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter stack (Stack* *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize stack = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function pop(stack)
+  Step 2.2: Capture return value
+    → result = -1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_pop" name="test_pop_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function pop
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter stack (Stack* *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize stack = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function pop(stack)
+  Step 2.2: Capture return value
+    → result = -1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_push" name="test_push_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function push
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter stack (Stack* *) will be set to None
+  ✓ Parameter item (int) will be set to 100
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize stack = None
+  Step 1.2: Initialize item = 100
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function push(stack, item)
+  Step 2.2: Capture return value
+    → result = -1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_push" name="test_push_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function push
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter stack (Stack* *) will be set to None
+  ✓ Parameter item (int) will be set to 2147483647
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize stack = None
+  Step 1.2: Initialize item = 2147483647
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function push(stack, item)
+  Step 2.2: Capture return value
+    → result = -1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_data_structures_c_push" name="test_push_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function push
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter stack (Stack* *) will be set to None
+  ✓ Parameter item (int) will be set to -999
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize stack = None
+  Step 1.2: Initialize item = -999
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function push(stack, item)
+  Step 2.2: Capture return value
+    → result = -1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_main_c_main" name="test_main_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function main
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter argc (int) will be set to 10
+  ✓ Parameter argv (void *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize argc = 10
+  Step 1.2: Initialize argv = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function main(argc, argv)
+  Step 2.2: Capture return value
+    → result = 0
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_main_c_main" name="test_main_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function main
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter argc (int) will be set to 0
+  ✓ Parameter argv (void *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize argc = 0
+  Step 1.2: Initialize argv = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function main(argc, argv)
+  Step 2.2: Capture return value
+    → result = 0
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_main_c_main" name="test_main_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function main
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter argc (int) will be set to -999
+  ✓ Parameter argv (void *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize argc = -999
+  Step 1.2: Initialize argv = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function main(argc, argv)
+  Step 2.2: Capture return value
+    → result = 0
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_string_utils_c_count_char" name="test_count_char_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function count_char
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter str_param (char *) will be set to ctypes.create_string_buffer(b"hello")
+  ✓ Parameter ch (char) will be set to b'a'
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize str_param = ctypes.create_string_buffer(b"hello")
+  Step 1.2: Initialize ch = b'a'
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function count_char(str_param, ch)
+  Step 2.2: Capture return value
+    → result = 0
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_string_utils_c_count_char" name="test_count_char_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function count_char
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter str_param (char *) will be set to ctypes.create_string_buffer(b"")
+  ✓ Parameter ch (char) will be set to b'Z'
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize str_param = ctypes.create_string_buffer(b"")
+  Step 1.2: Initialize ch = b'Z'
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function count_char(str_param, ch)
+  Step 2.2: Capture return value
+    → result = 0
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_string_utils_c_count_char" name="test_count_char_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function count_char
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter str_param (char *) will be set to None
+  ✓ Parameter ch (char) will be set to b'x'
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize str_param = None
+  Step 1.2: Initialize ch = b'x'
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function count_char(str_param, ch)
+  Step 2.2: Capture return value
+    → result = 0
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_string_utils_c_is_palindrome" name="test_is_palindrome_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function is_palindrome
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter str_param (char *) will be set to ctypes.create_string_buffer(b"hello")
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize str_param = ctypes.create_string_buffer(b"hello")
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function is_palindrome(str_param)
+  Step 2.2: Capture return value
+    → result = 0
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_string_utils_c_is_palindrome" name="test_is_palindrome_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function is_palindrome
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter str_param (char *) will be set to ctypes.create_string_buffer(b"")
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize str_param = ctypes.create_string_buffer(b"")
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function is_palindrome(str_param)
+  Step 2.2: Capture return value
+    → result = 1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_string_utils_c_is_palindrome" name="test_is_palindrome_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function is_palindrome
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter str_param (char *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize str_param = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function is_palindrome(str_param)
+  Step 2.2: Capture return value
+    → result = 0
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_string_utils_c_reverse_string" name="test_reverse_string_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function reverse_string
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter str_param (char *) will be set to ctypes.create_string_buffer(b"hello")
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize str_param = ctypes.create_string_buffer(b"hello")
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function reverse_string(str_param)
+  Step 2.2: Capture return value
+    → result = b'olleh'
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_string_utils_c_reverse_string" name="test_reverse_string_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function reverse_string
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter str_param (char *) will be set to ctypes.create_string_buffer(b"")
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize str_param = ctypes.create_string_buffer(b"")
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function reverse_string(str_param)
+  Step 2.2: Capture return value
+    → result = b''
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_string_utils_c_reverse_string" name="test_reverse_string_error" time="0.002"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function reverse_string
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter str_param (char *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize str_param = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function reverse_string(str_param)
+  Step 2.2: Capture return value
+    → result = None
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_string_utils_c_to_lowercase" name="test_to_lowercase_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function to_lowercase
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter str_param (char *) will be set to ctypes.create_string_buffer(b"hello")
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize str_param = ctypes.create_string_buffer(b"hello")
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function to_lowercase(str_param)
+  Step 2.2: Capture return value
+    → result = b'hello'
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_string_utils_c_to_lowercase" name="test_to_lowercase_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function to_lowercase
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter str_param (char *) will be set to ctypes.create_string_buffer(b"")
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize str_param = ctypes.create_string_buffer(b"")
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function to_lowercase(str_param)
+  Step 2.2: Capture return value
+    → result = b''
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_string_utils_c_to_lowercase" name="test_to_lowercase_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function to_lowercase
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter str_param (char *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize str_param = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function to_lowercase(str_param)
+  Step 2.2: Capture return value
+    → result = None
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_string_utils_c_to_uppercase" name="test_to_uppercase_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function to_uppercase
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter str_param (char *) will be set to ctypes.create_string_buffer(b"hello")
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize str_param = ctypes.create_string_buffer(b"hello")
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function to_uppercase(str_param)
+  Step 2.2: Capture return value
+    → result = b'HELLO'
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_string_utils_c_to_uppercase" name="test_to_uppercase_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function to_uppercase
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter str_param (char *) will be set to ctypes.create_string_buffer(b"")
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize str_param = ctypes.create_string_buffer(b"")
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function to_uppercase(str_param)
+  Step 2.2: Capture return value
+    → result = b''
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_string_utils_c_to_uppercase" name="test_to_uppercase_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function to_uppercase
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter str_param (char *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize str_param = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function to_uppercase(str_param)
+  Step 2.2: Capture return value
+    → result = None
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_string_utils_c_trim_string" name="test_trim_string_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function trim_string
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter str_param (char *) will be set to ctypes.create_string_buffer(b"hello")
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize str_param = ctypes.create_string_buffer(b"hello")
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function trim_string(str_param)
+  Step 2.2: Capture return value
+    → result = b'hello'
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_string_utils_c_trim_string" name="test_trim_string_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function trim_string
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter str_param (char *) will be set to ctypes.create_string_buffer(b"")
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize str_param = ctypes.create_string_buffer(b"")
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function trim_string(str_param)
+  Step 2.2: Capture return value
+    → result = b''
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_complex_project_string_utils_c_trim_string" name="test_trim_string_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function trim_string
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter str_param (char *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize str_param = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function trim_string(str_param)
+  Step 2.2: Capture return value
+    → result = None
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_sample_c_add" name="test_add_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
 ======================================================================
 TEST SCENARIO: NORMAL for function add
 ======================================================================
@@ -39,8 +1830,15 @@ EXPECTED RESULT: 47
 STEP 2: EXECUTE FUNCTION
 ----------------------------------------------------------------------
   Step 2.1: Call function add(a, b)
+  Step 2.2: Capture return value
+    → result = 47
+  ✓ Function execution completed
 
-</system-out></testcase><testcase classname="test_examples_complex_project_calculator_c_add" name="test_add_boundary" time="0.001"><skipped type="pytest.skip" message="C library not loaded or function not found">D:\UnitTesting - Copy\data\generated_tests\test_examples_complex_project_calculator_c_add.py:98: C library not loaded or function not found</skipped><system-out>--------------------------------- Captured Out ---------------------------------
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_sample_c_add" name="test_add_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
 ======================================================================
 TEST SCENARIO: BOUNDARY for function add
 ======================================================================
@@ -60,10 +1858,229 @@ EXPECTED RESULT: 0
 STEP 2: EXECUTE FUNCTION
 ----------------------------------------------------------------------
   Step 2.1: Call function add(a, b)
+  Step 2.2: Capture return value
+    → result = 0
+  ✓ Function execution completed
 
-</system-out><system-out>--------------------------------- Captured Out ---------------------------------
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_sample_c_add" name="test_add_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
 ======================================================================
-TEST SCENARIO: BOUNDARY for function add
+TEST SCENARIO: ERROR for function add
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter a (int) will be set to -1
+  ✓ Parameter b (int) will be set to -1
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize a = -1
+  Step 1.2: Initialize b = -1
+  ✓ Test data prepared successfully
+
+EXPECTED RESULT: -2
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function add(a, b)
+  Step 2.2: Capture return value
+    → result = -2
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_sample_c_factorial" name="test_factorial_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function factorial
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter n (int) will be set to 5
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize n = 5
+  ✓ Test data prepared successfully
+
+EXPECTED RESULT: 120
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function factorial(n)
+  Step 2.2: Capture return value
+    → result = 120
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_sample_c_factorial" name="test_factorial_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function factorial
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter n (int) will be set to 0
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize n = 0
+  ✓ Test data prepared successfully
+
+EXPECTED RESULT: 1
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function factorial(n)
+  Step 2.2: Capture return value
+    → result = 1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_sample_c_factorial" name="test_factorial_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function factorial
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter n (int) will be set to -1
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize n = -1
+  ✓ Test data prepared successfully
+
+EXPECTED RESULT: -1
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function factorial(n)
+  Step 2.2: Capture return value
+    → result = -1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_sample_c_find_max" name="test_find_max_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function find_max
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter arr (void *) will be set to (ctypes.c_int * 5)(1,2,3,4,5)
+  ✓ Parameter size (int) will be set to 5
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize arr = (ctypes.c_int * 5)(1,2,3,4,5)
+  Step 1.2: Initialize size = 5
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function find_max(arr, size)
+  Step 2.2: Capture return value
+    → result = 5
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_sample_c_find_max" name="test_find_max_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function find_max
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter arr (void *) will be set to (ctypes.c_int * 5)(1,2,3,4,5)
+  ✓ Parameter size (int) will be set to 5
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize arr = (ctypes.c_int * 5)(1,2,3,4,5)
+  Step 1.2: Initialize size = 5
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function find_max(arr, size)
+  Step 2.2: Capture return value
+    → result = 5
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_sample_c_find_max" name="test_find_max_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function find_max
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter arr (void *) will be set to (ctypes.c_int * 5)(1,2,3,4,5)
+  ✓ Parameter size (int) will be set to 5
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize arr = (ctypes.c_int * 5)(1,2,3,4,5)
+  Step 1.2: Initialize size = 5
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function find_max(arr, size)
+  Step 2.2: Capture return value
+    → result = 5
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_sample_c_multiply" name="test_multiply_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function multiply
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter a (int) will be set to 5
+  ✓ Parameter b (int) will be set to 42
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize a = 5
+  Step 1.2: Initialize b = 42
+  ✓ Test data prepared successfully
+
+EXPECTED RESULT: 210
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function multiply(a, b)
+  Step 2.2: Capture return value
+    → result = 210
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_sample_c_multiply" name="test_multiply_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function multiply
 ======================================================================
 
 PRECONDITIONS:
@@ -80,32 +2097,18 @@ EXPECTED RESULT: 0
 
 STEP 2: EXECUTE FUNCTION
 ----------------------------------------------------------------------
-  Step 2.1: Call function add(a, b)
+  Step 2.1: Call function multiply(a, b)
+  Step 2.2: Capture return value
+    → result = 0
+  ✓ Function execution completed
 
-</system-out></testcase><testcase classname="test_examples_complex_project_calculator_c_add" name="test_add_error" time="0.001"><skipped type="pytest.skip" message="C library not loaded or function not found">D:\UnitTesting - Copy\data\generated_tests\test_examples_complex_project_calculator_c_add.py:137: C library not loaded or function not found</skipped><system-out>--------------------------------- Captured Out ---------------------------------
-======================================================================
-TEST SCENARIO: ERROR for function add
-======================================================================
-
-PRECONDITIONS:
-  ✓ Parameter a (int) will be set to -1
-  ✓ Parameter b (int) will be set to -1
-
-STEP 1: PREPARE TEST DATA
+STEP 3: VALIDATE RESULTS
 ----------------------------------------------------------------------
-  Step 1.1: Initialize a = -1
-  Step 1.2: Initialize b = -1
-  ✓ Test data prepared successfully
+  Step 3.1: Verify return value
 
-EXPECTED RESULT: -2
-
-STEP 2: EXECUTE FUNCTION
-----------------------------------------------------------------------
-  Step 2.1: Call function add(a, b)
-
-</system-out><system-out>--------------------------------- Captured Out ---------------------------------
+</system-out></testcase><testcase classname="test_examples_sample_c_multiply" name="test_multiply_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
 ======================================================================
-TEST SCENARIO: ERROR for function add
+TEST SCENARIO: ERROR for function multiply
 ======================================================================
 
 PRECONDITIONS:
@@ -118,10 +2121,89 @@ STEP 1: PREPARE TEST DATA
   Step 1.2: Initialize b = -1
   ✓ Test data prepared successfully
 
-EXPECTED RESULT: -2
+EXPECTED RESULT: 1
 
 STEP 2: EXECUTE FUNCTION
 ----------------------------------------------------------------------
-  Step 2.1: Call function add(a, b)
+  Step 2.1: Call function multiply(a, b)
+  Step 2.2: Capture return value
+    → result = 1
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_sample_c_reverse_string" name="test_reverse_string_normal" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: NORMAL for function reverse_string
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter str_param (char *) will be set to ctypes.create_string_buffer(b"hello")
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize str_param = ctypes.create_string_buffer(b"hello")
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function reverse_string(str_param)
+  Step 2.2: Capture return value
+    → result = b'olleh'
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_sample_c_reverse_string" name="test_reverse_string_boundary" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: BOUNDARY for function reverse_string
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter str_param (char *) will be set to ctypes.create_string_buffer(b"")
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize str_param = ctypes.create_string_buffer(b"")
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function reverse_string(str_param)
+  Step 2.2: Capture return value
+    → result = b''
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
+
+</system-out></testcase><testcase classname="test_examples_sample_c_reverse_string" name="test_reverse_string_error" time="0.001"><system-out>--------------------------------- Captured Out ---------------------------------
+======================================================================
+TEST SCENARIO: ERROR for function reverse_string
+======================================================================
+
+PRECONDITIONS:
+  ✓ Parameter str_param (char *) will be set to None
+
+STEP 1: PREPARE TEST DATA
+----------------------------------------------------------------------
+  Step 1.1: Initialize str_param = None
+  ✓ Test data prepared successfully
+
+STEP 2: EXECUTE FUNCTION
+----------------------------------------------------------------------
+  Step 2.1: Call function reverse_string(str_param)
+  Step 2.2: Capture return value
+    → result = None
+  ✓ Function execution completed
+
+STEP 3: VALIDATE RESULTS
+----------------------------------------------------------------------
+  Step 3.1: Verify return value
 
 </system-out></testcase></testsuite></testsuites>

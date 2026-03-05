@@ -1,0 +1,7 @@
+To use the full AI model:
+
+1. Go to your OpenAI API Keys page . link : https://platform.openai.com/api-keys
+2. Create a new secret key .
+3. Set it in your environment:
+   - Windows (PowerShell) : [Environment]::SetEnvironmentVariable("OPENAI_API_KEY", "your-real-key-here", "User")
+   - Restart the tool for the change to take effect.

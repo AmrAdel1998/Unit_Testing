@@ -10,3 +10,5 @@ pytest-xdist
 junit-xml
 lxml
 openai
+pandas
+openpyxl

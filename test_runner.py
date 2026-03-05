@@ -51,11 +51,12 @@ class TestRunner:
             with open(os.path.join(log_dir, 'latest_stderr.txt'), 'w', encoding='utf-8') as f:
                 f.write(proc.stderr)
             
-            # Generate CSV Report
+            # Generate Reports
             try:
                 self.generate_csv_report(xml_report)
+                self.generate_excel_report(xml_report)
             except Exception as e:
-                print(f"Failed to generate CSV report: {e}")
+                print(f"Failed to generate reports: {e}")
 
             # Return error info if tests failed
             error_info = None
@@ -149,3 +150,70 @@ class TestRunner:
                 
         except Exception as e:
             print(f"Error parsing JUnit XML for CSV: {e}")
+
+    def generate_excel_report(self, xml_path):
+        """Generate Excel report from JUnit XML using pandas"""
+        import xml.etree.ElementTree as ET
+        try:
+            import pandas as pd
+        except ImportError:
+            print("pandas not installed. Skipping Excel report.")
+            return
+
+        report_data = []
+        try:
+            tree = ET.parse(xml_path)
+            root = tree.getroot()
+            
+            for testcase in root.iter('testcase'):
+                name = testcase.get('name')
+                parts = name.split('_')
+                if len(parts) >= 3:
+                    func_name = '_'.join(parts[1:-1]) 
+                    scenario = parts[-1]
+                else:
+                    func_name = name
+                    scenario = "General"
+                
+                failure = testcase.find('failure')
+                error = testcase.find('error')
+                skipped = testcase.find('skipped')
+                
+                status = "Pass"
+                if failure is not None: status = "Fail"
+                elif error is not None: status = "Error"
+                elif skipped is not None: status = "Skipped"
+                
+                sys_out = testcase.find('system-out')
+                steps = []
+                if sys_out is not None and sys_out.text:
+                    for line in sys_out.text.splitlines():
+                        if "STEP:" in line:
+                            steps.append(line.split("STEP:")[1].strip())
+                
+                if not steps:
+                    steps = ["Execution"]
+                    
+                for i, step in enumerate(steps):
+                    step_status = "Pass"
+                    if status in ["Fail", "Error"]:
+                        if i == len(steps) - 1:
+                            step_status = status
+                    elif status == "Skipped":
+                        step_status = "Skipped"
+                    
+                    report_data.append({
+                        'Function Name': func_name,
+                        'Test Case': f"{scenario} - {name}",
+                        'Test Step': step,
+                        'Status': step_status
+                    })
+            
+            if report_data:
+                df = pd.DataFrame(report_data)
+                excel_path = os.path.join(self.reports_dir, 'report.xlsx')
+                df.to_excel(excel_path, index=False)
+                print(f"Excel Report generated at: {excel_path}")
+                
+        except Exception as e:
+            print(f"Error generating Excel report: {e}")

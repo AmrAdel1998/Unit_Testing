@@ -173,18 +173,18 @@ class TestGenerator:
         return None
 
     def _compile_project(self, functions):
-        """Compile C files, grouped by directory, into shared libraries"""
+        """Compile C files into shared libraries. Improved for robustness."""
         compiler = self._find_compiler()
         if not compiler:
-            print("ERROR: No C compiler (gcc or cl) found in PATH or common locations.")
-            print("Please install MinGW-w64 or Visual Studio C++ compiler.")
-            print("Tests will be generated but will SKIP execution of C code.")
+            print("ERROR: No C compiler found.")
             return {}
             
         # Group files by directory
         dir_groups = {}
+        all_c_files = set()
         for fn in functions:
-            filepath = fn['file']
+            filepath = os.path.abspath(fn['file'])
+            all_c_files.add(filepath)
             dirname = os.path.dirname(filepath)
             if dirname not in dir_groups:
                 dir_groups[dirname] = set()
@@ -192,58 +192,62 @@ class TestGenerator:
             
         lib_mapping = {}
         
-        print(f"Found {len(dir_groups)} directories with C files.")
+        # Strategy: Compile one DLL for the entire project for maximum symbol visibility
+        project_lib_name = 'project_lib.dll' if os.name == 'nt' else 'project_lib.so'
+        project_lib_path = os.path.join(os.path.abspath(self.out_dir), project_lib_name)
         
-        for dirname, c_files in dir_groups.items():
-            # Create a safe name for the library based on directory path
-            # Use 'root' if dirname is empty or dot
-            safe_dirname = self._safe_name(dirname) if dirname and dirname != '.' else 'root'
-            
-            # Add hash to ensure uniqueness
-            import hashlib
-            dir_hash = hashlib.md5(dirname.encode('utf-8')).hexdigest()[:8]
+        c_files_list = [f'"{f}"' for f in all_c_files] # Quote paths for spaces
+        
+        # Build compile command
+        if 'gcc' in str(compiler).lower():
+            cmd = [f'"{compiler}"', '-shared', '-fPIC', '-o', f'"{project_lib_path}"'] + c_files_list
+            # Add include paths for all directories
+            for dirname in dir_groups.keys():
+                if dirname:
+                    cmd.extend(['-I', f'"{dirname}"'])
             
             if os.name == 'nt':
-                lib_name = f'lib_{safe_dirname}_{dir_hash}.dll'
-            else:
-                lib_name = f'lib_{safe_dirname}_{dir_hash}.so'
-                
-            lib_path = os.path.join(self.out_dir, lib_name)
-            c_files_list = list(c_files)
-            
-            # Compile command
-            cmd = [compiler, '-shared', '-o', lib_path] + c_files_list
-            # Add include path for the directory
-            if dirname:
-                 cmd.extend(['-I', dirname])
-            
-            # If using MSVC cl.exe, flags are different
-            if 'cl.exe' in compiler or (compiler == 'cl'):
-                cmd = ['cl', '/LD', '/Fe:' + lib_path] + c_files_list
+                cmd.extend(['-Wl,--export-all-symbols', '-Wl,--allow-multiple-definition'])
+        elif 'cl' in str(compiler).lower():
+            cmd = ['cl', '/LD', '/Fe:' + f'"{project_lib_path}"'] + c_files_list
+            for dirname in dir_groups.keys():
                 if dirname:
-                    cmd.extend([f'/I{dirname}'])
+                    cmd.extend([f'/I"{dirname}"'])
+        else:
+            cmd = [f'"{compiler}"', '-shared', '-o', f'"{project_lib_path}"'] + c_files_list
             
-            try:
-                # Ensure all symbols are exported on Windows when using GCC
-                if os.name == 'nt' and (('gcc' in str(compiler).lower()) or (str(compiler).lower().endswith('gcc.exe'))):
-                    cmd.extend(['-Wl,--export-all-symbols'])
-                print(f"Compiling directory {dirname} -> {lib_name}...")
-                print(f"Command: {' '.join(cmd)}")
-                subprocess.run(cmd, check=True, capture_output=True)
-                if os.path.exists(lib_path):
-                    print(f"Successfully compiled {lib_path}")
-                    # Map all files in this group to this library
-                    for cf in c_files:
-                        lib_mapping[cf] = lib_name
-                else:
-                    print("Compilation command ran but DLL was not created.")
-            except subprocess.CalledProcessError as e:
-                print(f"Compilation failed for {dirname}: {e.stderr.decode() if e.stderr else 'Unknown error'}")
+        try:
+            print(f"Compiling project into {project_lib_name}...")
+            full_cmd = ' '.join(cmd)
+            print(f"Command: {full_cmd}")
+            # Use shell=True for complex commands with quoted paths on Windows
+            result = subprocess.run(full_cmd, check=True, capture_output=True, text=True, shell=True)
+            if os.path.exists(project_lib_path):
+                print(f"Successfully compiled {project_lib_path}")
+                for cf in functions:
+                    lib_mapping[cf['file']] = project_lib_name
+            else:
+                print("Compilation ran but DLL not created.")
+        except subprocess.CalledProcessError as e:
+            print(f"Compilation failed: {e.stderr}")
+            # Log full error for debugging
+            os.makedirs('data/reports', exist_ok=True)
+            with open('data/reports/compile_error.log', 'w') as f:
+                f.write(f"Command: {full_cmd}\n")
+                f.write(f"Error: {e.stderr}\n")
+                f.write(f"Output: {e.stdout}\n")
                 
         return lib_mapping
 
-    def _generate_test_values_set(self, fn_name, arg_names, arg_types, test_type):
+    def _generate_test_values_set(self, fn_name, arg_names, arg_types, test_type, ai_hints=None):
         """Generate a consistent set of test values for all arguments"""
+        # Try to use AI-provided inputs if available
+        if ai_hints and 'inputs' in ai_hints:
+            inputs = ai_hints['inputs']
+            if test_type in inputs and len(inputs[test_type]) == len(arg_names):
+                # Ensure all values are strings for consistency
+                return [str(v) for v in inputs[test_type]]
+
         values = []
         
         # Check if it's a known math function for smarter values
@@ -611,27 +615,18 @@ class TestGenerator:
         except Exception:
             self._doc_insights = {}
         
-        # Compile project first
-        lib_mapping = self._compile_project(functions)
-
-        # Get current function signatures for cleanup
-        current_function_files = set()
-        for fn in functions:
-            fname = fn['name']
-            mod = self._safe_name(fn['file'].replace('/', '_'))
-            outname = f'test_{mod}_{fname}.py'
-            current_function_files.add(outname)
-        
         # Cleanup old test files
         if cleanup_old and os.path.exists(self.out_dir):
-            existing_files = [f for f in os.listdir(self.out_dir) if f.startswith('test_') and f.endswith('.py')]
+            existing_files = [f for f in os.listdir(self.out_dir) if (f.startswith('test_') and f.endswith('.py'))]
             for old_file in existing_files:
-                if old_file not in current_function_files:
-                    try:
-                        os.remove(os.path.join(self.out_dir, old_file))
-                        print(f"Removed old test file: {old_file}")
-                    except Exception as e:
-                        print(f"Failed to remove {old_file}: {e}")
+                try:
+                    os.remove(os.path.join(self.out_dir, old_file))
+                    print(f"Removed old test file: {old_file}")
+                except Exception as e:
+                    print(f"Failed to remove {old_file}: {e}")
+        
+        # Compile project AFTER cleanup to ensure new DLL is not deleted
+        lib_mapping = self._compile_project(functions)
         
         # Generate conftest.py for pytest hooks
         self._generate_conftest()
@@ -639,9 +634,21 @@ class TestGenerator:
         # Generate tests for each function
         for fn in functions:
             fname = fn['name']
+            fbody = fn.get('body', '')
             mod = self._safe_name(fn['file'].replace('/', '_'))
             outname = f'test_{mod}_{fname}.py'
             path = os.path.join(self.out_dir, outname)
+            
+            # AI white-box analysis
+            ai_hints = {}
+            if self.ai_analyzer and self.ai_analyzer.use_ai:
+                try:
+                    sig_text = f"{fn.get('raw_return', 'int')} {fname}({fn.get('args', 'void')})"
+                    # Collect related docs for context
+                    context_docs = list(self._doc_insights.values())
+                    ai_hints = self.ai_analyzer.analyze_c_function(fname, sig_text, fbody, related_docs=[str(d) for d in context_docs])
+                except Exception as e:
+                    print(f"AI analysis failed for {fname}: {e}")
             
             # Get correct library for this function
             lib_name = lib_mapping.get(fn['file'], "project_lib.dll")
@@ -668,10 +675,14 @@ class TestGenerator:
                 f.write(f'LIB_NAME = "{lib_name}"\n')
                 f.write('try:\n')
                 f.write('    # Try to load the library from the same directory as this test file\n')
-                f.write('    lib_path = os.path.join(os.path.dirname(__file__), LIB_NAME)\n')
+                f.write('    lib_path = os.path.abspath(os.path.join(os.path.dirname(__file__), LIB_NAME))\n')
+                f.write('    if not os.path.exists(lib_path):\n')
+                f.write('        # Try fallback if not in current dir\n')
+                f.write('        lib_path = os.path.abspath(os.path.join(os.getcwd(), "data", "generated_tests", LIB_NAME))\n')
                 f.write('    clib = ctypes.CDLL(lib_path)\n')
-                f.write('except OSError:\n')
+                f.write('except OSError as e:\n')
                 f.write('    # Fallback if library is not found (e.g. compilation failed)\n')
+                f.write('    print(f"Error loading {LIB_NAME}: {e}")\n')
                 f.write('    clib = None\n')
                 f.write('\n')
                 
@@ -700,10 +711,17 @@ class TestGenerator:
                     f.write(f"def test_{fname}_{test_type}():\n")
                     f.write('    """\n')
                     f.write(f'    Test Case: {test_type.capitalize()} scenario for {fname}\n')
+                    if ai_hints.get('purpose'):
+                        f.write(f"    Purpose: {ai_hints['purpose']}\n")
+                    if ai_hints.get('whitebox_paths'):
+                        f.write("    White-box paths targeted:\n")
+                        for path_hint in ai_hints['whitebox_paths']:
+                            f.write(f"    - {path_hint}\n")
                     f.write('    """\n')
                     
                     # Generate test values (consistent set)
-                    test_values = self._generate_test_values_set(fname, arg_names, arg_types, test_type)
+                    # Pass AI hints if available
+                    test_values = self._generate_test_values_set(fname, arg_names, arg_types, test_type, ai_hints=ai_hints)
                     # Special-case find_max to create a real int array pointer + size
                     if fname == 'find_max' and len(arg_names) >= 2:
                         test_values = ['(ctypes.c_int * 5)(1,2,3,4,5)', '5']
@@ -735,8 +753,18 @@ class TestGenerator:
                         if return_type.lower() == 'void' and fname.lower() in ['destroy_stack', 'destroy_queue']:
                             f.write("    assert validations_ok\n")
                         else:
-                            assertion = self._generate_assertion(fname, return_type, test_type, arg_names, arg_types)
-                            f.write(f"    {assertion}\n")
+                            # Use AI assertion hints if available
+                            ai_assertions = ai_hints.get('assertion_hints', [])
+                            if ai_assertions and test_type != 'error':
+                                for ai_assert in ai_assertions:
+                                    # Basic sanitization of AI assertion
+                                    if ai_assert.startswith('assert '):
+                                        f.write(f"    {ai_assert}\n")
+                                    else:
+                                        f.write(f"    assert {ai_assert}\n")
+                            else:
+                                assertion = self._generate_assertion(fname, return_type, test_type, arg_names, arg_types)
+                                f.write(f"    {assertion}\n")
                     f.write('\n')
     
     def _generate_conftest(self):

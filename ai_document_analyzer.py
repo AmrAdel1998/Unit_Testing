@@ -9,13 +9,13 @@ from typing import Dict, List, Optional
 
 
 class AIDocumentAnalyzer:
-    def __init__(self, api_key: Optional[str] = None, model: str = "gpt-3.5-turbo"):
+    def __init__(self, api_key: Optional[str] = None, model: str = "gpt-4o"):
         """
         Initialize AI Document Analyzer
         
         Args:
             api_key: OpenAI API key (or set OPENAI_API_KEY environment variable)
-            model: Model to use (gpt-3.5-turbo, gpt-4, etc.)
+            model: Model to use (gpt-4o, gpt-4, etc.)
         """
         self.api_key = api_key or os.getenv('OPENAI_API_KEY')
         self.model = model
@@ -66,34 +66,43 @@ class AIDocumentAnalyzer:
         try:
             import openai
             openai.api_key = self.api_key
-            prompt = f"""You are a senior C developer and testing expert.
-Analyze this C function and produce unit test insights:
-- Purpose
-- Inputs and their constraints
-- Outputs and behavior
-- Side effects (if any)
-- Edge cases and negative cases
-- Concrete assertion suggestions in Python for ctypes calls
+            prompt = f"""You are a senior C developer and white-box testing expert.
+Analyze this C function's implementation and signature to identify all logic paths, boundary conditions, and potential vulnerabilities (e.g., NULL dereference, buffer overflow).
 
 Function name: {function_name}
 Signature: {signature}
 Source code:
 {source_code[:8000]}
 
-Related requirements (if any):
+Related requirements/context (if any):
 {doc_context[:4000]}
 
-Respond with JSON fields:
-purpose, inputs, outputs, side_effects, edge_cases, negative_cases, assertions (array of short strings).
+Provide unit test insights to achieve 100% path coverage where possible:
+- purpose: brief description of function goal
+- inputs: specific values (normal, boundary, error) for each argument
+- behavior: expected outcome for each input set
+- edge_cases: specific scenarios like empty strings, max/min values, NULL pointers
+- whitebox_paths: list of logical branches or conditions to test (e.g., 'if (ptr == NULL)', 'while loop iterations')
+- assertion_hints: concrete Python assertion suggestions using 'result' or 'clib' state
+
+Respond with valid JSON only:
+{{
+  "purpose": "...",
+  "inputs": {{ "normal": [...], "boundary": [...], "error": [...] }},
+  "behavior": "...",
+  "edge_cases": [...],
+  "whitebox_paths": [...],
+  "assertion_hints": [...]
+}}
 """
             response = openai.ChatCompletion.create(
                 model=self.model,
                 messages=[
-                    {"role": "system", "content": "You produce concise, actionable testing insights. Respond with valid JSON only."},
+                    {"role": "system", "content": "You are a software testing architect specializing in C and white-box strategies. Respond with JSON only."},
                     {"role": "user", "content": prompt}
                 ],
-                temperature=0.2,
-                max_tokens=1200
+                temperature=0.1,
+                max_tokens=1500
             )
             result_text = response.choices[0].message.content
             if "```json" in result_text:
@@ -102,7 +111,13 @@ purpose, inputs, outputs, side_effects, edge_cases, negative_cases, assertions (
                 result_text = result_text.split("```")[1].split("```")[0]
             return json.loads(result_text)
         except Exception as e:
-            print(f"AI function analysis failed: {e}. Using fallback.")
+            # Check for invalid API key (401 error)
+            error_str = str(e)
+            if "invalid_api_key" in error_str or "Incorrect API key" in error_str or "401" in error_str:
+                print(f"CRITICAL: Invalid OpenAI API key provided. Disabling AI features. Error: {e}")
+                self.use_ai = False  # Switch to fallback mode permanently for this instance
+            else:
+                print(f"AI function analysis failed: {e}. Using fallback.")
             return self.analyze_c_function(function_name, signature, source_code, related_docs=related_docs or [])
     def analyze_document(self, document_text: str, document_name: str = "") -> Dict:
         """
@@ -177,7 +192,13 @@ Provide a structured JSON response with:
             print("OpenAI library not installed. Install with: pip install openai")
             return self._fallback_analysis(document_text)
         except Exception as e:
-            print(f"AI analysis failed: {e}. Using fallback analysis.")
+            # Check for invalid API key (401 error)
+            error_str = str(e)
+            if "invalid_api_key" in error_str or "Incorrect API key" in error_str or "401" in error_str:
+                print(f"CRITICAL: Invalid OpenAI API key provided. Disabling AI features. Error: {e}")
+                self.use_ai = False  # Switch to fallback mode permanently for this instance
+            else:
+                print(f"AI analysis failed: {e}. Using fallback analysis.")
             return self._fallback_analysis(document_text)
     
     def _fallback_analysis(self, document_text: str) -> Dict:

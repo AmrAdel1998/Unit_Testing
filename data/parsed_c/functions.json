@@ -4,202 +4,231 @@
     "name": "add",
     "return": "int",
     "raw_return": "int",
-    "args": "int a, int b"
+    "args": "int a, int b",
+    "body": "return a + b;"
   },
   {
     "file": "examples\\sample.c",
     "name": "multiply",
     "return": "int",
     "raw_return": "int",
-    "args": "int a, int b"
+    "args": "int a, int b",
+    "body": "return a * b;"
   },
   {
     "file": "examples\\sample.c",
     "name": "factorial",
     "return": "int",
     "raw_return": "int",
-    "args": "int n"
+    "args": "int n",
+    "body": "if (n < 0) {\n        return -1;\n    }\n    if (n == 0 || n == 1) {\n        return 1;\n    }\n    return n * factorial(n - 1);"
   },
   {
     "file": "examples\\sample.c",
     "name": "find_max",
     "return": "int",
     "raw_return": "int",
-    "args": "int arr[], int size"
+    "args": "int arr[], int size",
+    "body": "if (size <= 0) {\n        return -2147483648; // INT_MIN\n    }\n    int max = arr[0];\n    for (int i = 1; i < size; i++) {\n        if (arr[i] > max) {\n            max = arr[i];\n        }\n    }\n    return max;"
   },
   {
     "file": "examples\\sample.c",
     "name": "reverse_string",
     "return": "char*",
     "raw_return": "char*",
-    "args": "char* str"
+    "args": "char* str",
+    "body": "if (str == NULL) {\n        return NULL;\n    }\n    int len = strlen(str);\n    for (int i = 0; i < len / 2; i++) {\n        char temp = str[i];\n        str[i] = str[len - 1 - i];\n        str[len - 1 - i] = temp;\n    }\n    return str;"
   },
   {
     "file": "examples\\complex_project\\calculator.c",
     "name": "add",
     "return": "int",
     "raw_return": "int",
-    "args": "int a, int b"
+    "args": "int a, int b",
+    "body": "return a + b;"
   },
   {
     "file": "examples\\complex_project\\calculator.c",
     "name": "subtract",
     "return": "int",
     "raw_return": "int",
-    "args": "int a, int b"
+    "args": "int a, int b",
+    "body": "return a - b;"
   },
   {
     "file": "examples\\complex_project\\calculator.c",
     "name": "multiply",
     "return": "int",
     "raw_return": "int",
-    "args": "int a, int b"
+    "args": "int a, int b",
+    "body": "return a * b;"
   },
   {
     "file": "examples\\complex_project\\calculator.c",
     "name": "divide",
     "return": "int",
     "raw_return": "int",
-    "args": "int a, int b"
+    "args": "int a, int b",
+    "body": "if (b == 0) {\n        return 0; // Error: division by zero\n    }\n    return a / b;"
   },
   {
     "file": "examples\\complex_project\\calculator.c",
     "name": "power",
     "return": "int",
     "raw_return": "int",
-    "args": "int base, int exponent"
+    "args": "int base, int exponent",
+    "body": "if (exponent < 0) {\n        return 0; // Negative exponents not supported\n    }\n    if (exponent == 0) {\n        return 1;\n    }\n    int result = 1;\n    for (int i = 0; i < exponent; i++) {\n        result *= base;\n    }\n    return result;"
   },
   {
     "file": "examples\\complex_project\\calculator.c",
     "name": "factorial",
     "return": "int",
     "raw_return": "int",
-    "args": "int n"
+    "args": "int n",
+    "body": "if (n < 0) {\n        return -1; // Error: negative number\n    }\n    if (n == 0 || n == 1) {\n        return 1;\n    }\n    return n * factorial(n - 1);"
   },
   {
     "file": "examples\\complex_project\\data_structures.c",
     "name": "create_stack",
     "return": "Stack*",
     "raw_return": "Stack*",
-    "args": "int capacity"
+    "args": "int capacity",
+    "body": "Stack* stack = (Stack*)malloc(sizeof(Stack));\n    if (stack == NULL) {\n        return NULL;\n    }\n    stack->items = (int*)malloc(capacity * sizeof(int));\n    if (stack->items == NULL) {\n        free(stack);\n        return NULL;\n    }\n    stack->top = -1;\n    stack->capacity = capacity;\n    return stack;"
   },
   {
     "file": "examples\\complex_project\\data_structures.c",
     "name": "push",
     "return": "int",
     "raw_return": "int",
-    "args": "Stack* stack, int item"
+    "args": "Stack* stack, int item",
+    "body": "if (stack == NULL || is_full(stack)) {\n        return -1;\n    }\n    stack->items[++stack->top] = item;\n    return 0;"
   },
   {
     "file": "examples\\complex_project\\data_structures.c",
     "name": "pop",
     "return": "int",
     "raw_return": "int",
-    "args": "Stack* stack"
+    "args": "Stack* stack",
+    "body": "if (stack == NULL || is_empty(stack)) {\n        return -1;\n    }\n    return stack->items[stack->top--];"
   },
   {
     "file": "examples\\complex_project\\data_structures.c",
     "name": "peek",
     "return": "int",
     "raw_return": "int",
-    "args": "Stack* stack"
+    "args": "Stack* stack",
+    "body": "if (stack == NULL || is_empty(stack)) {\n        return -1;\n    }\n    return stack->items[stack->top];"
   },
   {
     "file": "examples\\complex_project\\data_structures.c",
     "name": "is_empty",
     "return": "int",
     "raw_return": "int",
-    "args": "Stack* stack"
+    "args": "Stack* stack",
+    "body": "if (stack == NULL) {\n        return 1;\n    }\n    return stack->top == -1;"
   },
   {
     "file": "examples\\complex_project\\data_structures.c",
     "name": "is_full",
     "return": "int",
     "raw_return": "int",
-    "args": "Stack* stack"
+    "args": "Stack* stack",
+    "body": "if (stack == NULL) {\n        return 0;\n    }\n    return stack->top == stack->capacity - 1;"
   },
   {
     "file": "examples\\complex_project\\data_structures.c",
     "name": "destroy_stack",
     "return": "void",
     "raw_return": "void",
-    "args": "Stack* stack"
+    "args": "Stack* stack",
+    "body": "if (stack != NULL) {\n        free(stack->items);\n        free(stack);\n    }"
   },
   {
     "file": "examples\\complex_project\\data_structures.c",
     "name": "create_queue",
     "return": "Queue*",
     "raw_return": "Queue*",
-    "args": "void"
+    "args": "void",
+    "body": "Queue* queue = (Queue*)malloc(sizeof(Queue));\n    if (queue == NULL) {\n        return NULL;\n    }\n    queue->front = NULL;\n    queue->rear = NULL;\n    return queue;"
   },
   {
     "file": "examples\\complex_project\\data_structures.c",
     "name": "enqueue",
     "return": "int",
     "raw_return": "int",
-    "args": "Queue* queue, int data"
+    "args": "Queue* queue, int data",
+    "body": "if (queue == NULL) {\n        return -1;\n    }\n    Node* new_node = (Node*)malloc(sizeof(Node));\n    if (new_node == NULL) {\n        return -1;\n    }\n    new_node->data = data;\n    new_node->next = NULL;\n    \n    if (queue->rear == NULL) {\n        queue->front = queue->rear = new_node;\n    } else {\n        queue->rear->next = new_node;\n        queue->rear = new_node;\n    }\n    return 0;"
   },
   {
     "file": "examples\\complex_project\\data_structures.c",
     "name": "dequeue",
     "return": "int",
     "raw_return": "int",
-    "args": "Queue* queue"
+    "args": "Queue* queue",
+    "body": "if (queue == NULL || queue->front == NULL) {\n        return -1;\n    }\n    Node* temp = queue->front;\n    int data = temp->data;\n    queue->front = queue->front->next;\n    \n    if (queue->front == NULL) {\n        queue->rear = NULL;\n    }\n    free(temp);\n    return data;"
   },
   {
     "file": "examples\\complex_project\\data_structures.c",
     "name": "destroy_queue",
     "return": "void",
     "raw_return": "void",
-    "args": "Queue* queue"
+    "args": "Queue* queue",
+    "body": "if (queue != NULL) {\n        while (queue->front != NULL) {\n            Node* temp = queue->front;\n            queue->front = queue->front->next;\n            free(temp);\n        }\n        free(queue);\n    }"
   },
   {
     "file": "examples\\complex_project\\main.c",
     "name": "main",
     "return": "int",
     "raw_return": "int",
-    "args": "int argc, char *argv[]"
+    "args": "int argc, char *argv[]",
+    "body": "printf(\"Complex C Project Demo\\n\");\n    \n    // Test calculator\n    int result = add(10, 20);\n    printf(\"10 + 20 = %d\\n\", result);\n    \n    result = multiply(5, 6);\n    printf(\"5 * 6 = %d\\n\", result);\n    \n    // Test string utilities\n    char str[] = \"Hello World\";\n    reverse_string(str);\n    printf(\"Reversed: %s\\n\", str);\n    \n    // Test data structures\n    Stack *stack = create_stack(10);\n    push(stack, 42);\n    push(stack, 100);\n    printf(\"Stack top: %d\\n\", peek(stack));\n    \n    destroy_stack(stack);\n    \n    return 0;"
   },
   {
     "file": "examples\\complex_project\\string_utils.c",
     "name": "reverse_string",
     "return": "char*",
     "raw_return": "char*",
-    "args": "char* str"
+    "args": "char* str",
+    "body": "if (str == NULL) {\n        return NULL;\n    }\n    int len = strlen(str);\n    for (int i = 0; i < len / 2; i++) {\n        char temp = str[i];\n        str[i] = str[len - 1 - i];\n        str[len - 1 - i] = temp;\n    }\n    return str;"
   },
   {
     "file": "examples\\complex_project\\string_utils.c",
     "name": "to_uppercase",
     "return": "char*",
     "raw_return": "char*",
-    "args": "char* str"
+    "args": "char* str",
+    "body": "if (str == NULL) {\n        return NULL;\n    }\n    for (int i = 0; str[i] != '\\0'; i++) {\n        str[i] = toupper(str[i]);\n    }\n    return str;"
   },
   {
     "file": "examples\\complex_project\\string_utils.c",
     "name": "to_lowercase",
     "return": "char*",
     "raw_return": "char*",
-    "args": "char* str"
+    "args": "char* str",
+    "body": "if (str == NULL) {\n        return NULL;\n    }\n    for (int i = 0; str[i] != '\\0'; i++) {\n        str[i] = tolower(str[i]);\n    }\n    return str;"
   },
   {
     "file": "examples\\complex_project\\string_utils.c",
     "name": "trim_string",
     "return": "char*",
     "raw_return": "char*",
-    "args": "char* str"
+    "args": "char* str",
+    "body": "if (str == NULL) {\n        return NULL;\n    }\n    \n    // Trim leading whitespace\n    char* start = str;\n    while (isspace(*start)) {\n        start++;\n    }\n    \n    // Trim trailing whitespace\n    char* end = str + strlen(str) - 1;\n    while (end > start && isspace(*end)) {\n        *end = '\\0';\n        end--;\n    }\n    \n    // Move trimmed string to beginning\n    if (start != str) {\n        memmove(str, start, strlen(start) + 1);\n    }\n    \n    return str;"
   },
   {
     "file": "examples\\complex_project\\string_utils.c",
     "name": "is_palindrome",
     "return": "int",
     "raw_return": "int",
-    "args": "const char* str"
+    "args": "const char* str",
+    "body": "if (str == NULL) {\n        return 0;\n    }\n    int len = strlen(str);\n    for (int i = 0; i < len / 2; i++) {\n        if (str[i] != str[len - 1 - i]) {\n            return 0;\n        }\n    }\n    return 1;"
   },
   {
     "file": "examples\\complex_project\\string_utils.c",
     "name": "count_char",
     "return": "int",
     "raw_return": "int",
-    "args": "const char* str, char ch"
+    "args": "const char* str, char ch",
+    "body": "if (str == NULL) {\n        return 0;\n    }\n    int count = 0;\n    for (int i = 0; str[i] != '\\0'; i++) {\n        if (str[i] == ch) {\n            count++;\n        }\n    }\n    return count;"
   }
 ]

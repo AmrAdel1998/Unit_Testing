@@ -33,12 +33,27 @@ class CProjectParser:
                 # pycparser expects preprocessed C. For many projects this will not work directly.
                 # We'll use a naive regex fallback for simple extraction.
                 import re
-                # Improved pattern: match function definitions but exclude C keywords
+                # Improved pattern: match function definitions and try to capture body
+                # This uses a simple brace counting approach for the body
                 pattern = re.compile(r"([\w\*\s]+)\s+(\w+)\s*\(([^)]*)\)\s*\{", re.M)
                 for m in pattern.finditer(src):
                     ret = m.group(1).strip()
                     name = m.group(2).strip()
                     args = m.group(3).strip()
+                    
+                    # Extract body by counting braces starting from the match end
+                    body = ""
+                    brace_count = 1
+                    start_pos = m.end()
+                    for i in range(start_pos, len(src)):
+                        if src[i] == '{':
+                            brace_count += 1
+                        elif src[i] == '}':
+                            brace_count -= 1
+                        
+                        if brace_count == 0:
+                            body = src[start_pos:i].strip()
+                            break
                     
                     # Clean up return type (remove storage classes/qualifiers)
                     clean_ret = ret
@@ -58,7 +73,14 @@ class CProjectParser:
                     if name.startswith('_') and name.isupper():
                         continue
                     
-                    functions.append({'file': filepath, 'name': name, 'return': clean_ret, 'raw_return': ret, 'args': args})
+                    functions.append({
+                        'file': filepath, 
+                        'name': name, 
+                        'return': clean_ret, 
+                        'raw_return': ret, 
+                        'args': args,
+                        'body': body
+                    })
             except Exception as e:
                 print('Failed parse', filepath, e)
         return functions

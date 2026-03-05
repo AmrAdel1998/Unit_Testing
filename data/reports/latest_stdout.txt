@@ -1,11 +1,39 @@
 ============================= test session starts =============================
 platform win32 -- Python 3.14.0, pytest-9.0.1, pluggy-1.6.0
 rootdir: D:\UnitTesting - Copy\data\generated_tests
-plugins: csv-3.0.0, html-4.1.1, metadata-3.1.1, xdist-3.8.0
-collected 3 items
+plugins: anyio-4.12.0, csv-3.0.0, html-4.1.1, metadata-3.1.1, xdist-3.8.0
+collected 87 items
 
-test_examples_complex_project_calculator_c_add.py sss                    [100%]
+test_examples_complex_project_calculator_c_add.py ...                    [  3%]
+test_examples_complex_project_calculator_c_divide.py ...                 [  6%]
+test_examples_complex_project_calculator_c_factorial.py ...              [ 10%]
+test_examples_complex_project_calculator_c_multiply.py ...               [ 13%]
+test_examples_complex_project_calculator_c_power.py ...                  [ 17%]
+test_examples_complex_project_calculator_c_subtract.py ...               [ 20%]
+test_examples_complex_project_data_structures_c_create_queue.py ...      [ 24%]
+test_examples_complex_project_data_structures_c_create_stack.py ...      [ 27%]
+test_examples_complex_project_data_structures_c_dequeue.py ...           [ 31%]
+test_examples_complex_project_data_structures_c_destroy_queue.py ...     [ 34%]
+test_examples_complex_project_data_structures_c_destroy_stack.py ...     [ 37%]
+test_examples_complex_project_data_structures_c_enqueue.py ...           [ 41%]
+test_examples_complex_project_data_structures_c_is_empty.py ...          [ 44%]
+test_examples_complex_project_data_structures_c_is_full.py ...           [ 48%]
+test_examples_complex_project_data_structures_c_peek.py ...              [ 51%]
+test_examples_complex_project_data_structures_c_pop.py ...               [ 55%]
+test_examples_complex_project_data_structures_c_push.py ...              [ 58%]
+test_examples_complex_project_main_c_main.py ...                         [ 62%]
+test_examples_complex_project_string_utils_c_count_char.py ...           [ 65%]
+test_examples_complex_project_string_utils_c_is_palindrome.py ...        [ 68%]
+test_examples_complex_project_string_utils_c_reverse_string.py ...       [ 72%]
+test_examples_complex_project_string_utils_c_to_lowercase.py ...         [ 75%]
+test_examples_complex_project_string_utils_c_to_uppercase.py ...         [ 79%]
+test_examples_complex_project_string_utils_c_trim_string.py ...          [ 82%]
+test_examples_sample_c_add.py ...                                        [ 86%]
+test_examples_sample_c_factorial.py ...                                  [ 89%]
+test_examples_sample_c_find_max.py ...                                   [ 93%]
+test_examples_sample_c_multiply.py ...                                   [ 96%]
+test_examples_sample_c_reverse_string.py ...                             [100%]
 
 ------ generated xml file: D:\UnitTesting - Copy\data\reports\junit.xml -------
 - Generated html report: file:///D:/UnitTesting%20-%20Copy/data/reports/report.html -
-============================= 3 skipped in 0.04s ==============================
+============================= 87 passed in 0.32s ==============================
